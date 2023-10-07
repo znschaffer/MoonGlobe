@@ -1,5 +1,14 @@
 "use client"
-import Globe from "react-globe.gl"
+import { useState, useEffect } from "react"
+import Globe from "./components/Globe"
+
 export default function Home() {
-  return <Globe globeImageUrl={"./moon_map_small.jpeg"} />
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setMounted(true)
+    }
+  }, [])
+
+  return mounted ? <Globe /> : <div />
 }
