@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import MGlobe from "./components/MGlobe"
+import Date from "./components/controls/Date"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -12,7 +13,7 @@ export default function Home() {
 
   return mounted ? (
     <div>
-      <div className="fixed z-10 w-1/2 h-12 bg-red-400 top-50vh left-12">hello</div>
+      <Date />
       <MGlobe />
     </div>
   ) : (
