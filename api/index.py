@@ -4,7 +4,7 @@ import json
 app = Flask(__name__)
 
 levent_catalog = {'data':[]}
-lognonne_2003 = {'data':[]}
+_2003_Moonquake_Data = {'data':[]}
 
 def toJson(csvRelativePath, variable):
     with open(csvRelativePath) as file:
@@ -21,9 +21,9 @@ def toJson(csvRelativePath, variable):
 def levent():
     return json.dumps(levent_catalog), 200, {'ContentType':'application/json'} 
 
-@app.route("/api/lognonne_2003")
+@app.route("/api/_2003_Moonquake_Data")
 def lognonne():
-    return json.dumps(lognonne_2003), 200, {'ContentType':'application/json'} 
+    return json.dumps(_2003_Moonquake_Data), 200, {'ContentType':'application/json'} 
 
 toJson('api/levent.1008weber.csv', levent_catalog)
-toJson('api/lognonne_2003_catalog.csv', lognonne_2003)
+toJson('api/_2003_Moonquake_Data.csv', _2003_Moonquake_Data)
