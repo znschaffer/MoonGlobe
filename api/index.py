@@ -3,25 +3,27 @@ import csv
 import json
 app = Flask(__name__)
 
-event_catelog = []
+levent_catalog = {'data':[]}
+lognonne_2003 = {'data':[]}
 
-def toJson(csvRelativePath):
-    data = {'data': []}
-
+def toJson(csvRelativePath, variable):
     with open(csvRelativePath) as file:
         csvReader = csv.DictReader(file)
 
         for row in csvReader:
-            data.data.append(json.dumps(row))
-    return data
+            variable['data'].append(row)
         
         
 
 
 
-@app.route("/api/catelog")
-def hello_world():
+@app.route("/api/levent")
+def levent():
+    return json.dumps(levent_catalog), 200, {'ContentType':'application/json'} 
 
-    return json.dumps(toJson('./api/levent.1008weber.csv')), 200, {'ContentType':'application/json'} 
+@app.route("/api/lognonne_2003")
+def lognonne():
+    return json.dumps(lognonne_2003), 200, {'ContentType':'application/json'} 
 
-parse_event_catelog()
+toJson('api/levent.1008weber.csv', levent_catalog)
+toJson('api/lognonne_2003_catalog.csv', lognonne_2003)
