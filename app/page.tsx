@@ -1,15 +1,15 @@
-"use client"
-import { useState, useEffect } from "react"
-import MGlobe from "./components/MGlobe"
-import Date from "./components/controls/Date"
+"use client";
+import { useState, useEffect } from "react";
+import MGlobe from "./components/MGlobe";
+import Date from "./components/controls/Date";
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setMounted(true)
+      setMounted(true);
     }
-  }, [])
+  }, []);
 
   return mounted ? (
     <div>
@@ -18,5 +18,5 @@ export default function Home() {
     </div>
   ) : (
     <div />
-  )
+  );
 }
