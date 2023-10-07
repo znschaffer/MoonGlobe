@@ -1,15 +1,22 @@
-"use client"
-import Globe from "react-globe.gl"
-import MockData from "../data/mock"
-import { useEffect, useState } from "react"
-import { Config, defaultData } from "../data/defaultConfig"
-import { scale } from "../helpers"
+"use client";
+import Globe from "react-globe.gl";
+import MockData from "../data/mock";
+import { useEffect, useState } from "react";
+import { Config, defaultData } from "../data/defaultConfig";
+import { scale } from "../helpers";
 
-export default function MGlobe({ config }: { config: Config }) {
+export default function MGlobe({
+  config,
+  data,
+}: {
+  config: Config;
+  data: any;
+}) {
+  console.log(data);
   let defaultLabelLabels = (d: any) => `
         <div><b>${d.label}</b></div>
         <div>${d.agency} - ${d.program} Program</div>
-        <div>Landing on <i>${new Date(d.date).toLocaleDateString()}</i></div>`
+        <div>Landing on <i>${new Date(d.date).toLocaleDateString()}</i></div>`;
 
   const hasPoints = config.layers.find(({ key }) => key === "points")?.on
   const hasLabels = config.layers.find(({ key }) => key === "labels")?.on
