@@ -30,7 +30,10 @@ export default function Controls({
             key={data.key}
             color="red"
             checked={data.on}
-            onChange={() => toggleLayer(data.key)}
+            onChange={(e) => {
+              e.stopPropagation()
+              toggleLayer(data.key)
+            }}
           />
         ))}
       </Card>

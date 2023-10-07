@@ -20,11 +20,6 @@ export const defaultConfig: Config = {
       key: "showGraticules",
       on: true,
     },
-    {
-      title: "Atmosphere",
-      key: "showAtmosphere",
-      on: true,
-    },
   ],
   layers: [
     {
@@ -41,8 +36,7 @@ export const defaultConfig: Config = {
 }
 
 export const defaultData = {
-  waitForGlobeReady: true,
   bumpImageUrl: "./ldem_16.png",
   globeImageUrl: "./lroc_color_poles_8k.png",
-  animateIn: true,
+  showAtmosphere: false,
 }

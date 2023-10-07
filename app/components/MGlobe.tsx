@@ -11,44 +11,20 @@ export default function MGlobe({ config }: { config: Config }) {
         <div>${d.agency} - ${d.program} Program</div>
         <div>Landing on <i>${new Date(d.date).toLocaleDateString()}</i></div>`
 
-  const defaultLabelData = { labelText: "label", labelSize: 1.7, labelsData: MockData }
-  const defaultPointsData = {
-    pointLabel: defaultLabelLabels,
-    pointRadius: 0.3,
-    pointAltitude: (d: any) => scale(d.magnitude, 0, 10, 0.0, 0.5),
-    pointsData: MockData,
-  }
+  const hasPoints = config.layers.find(({ key }) => key === "points")?.on
+  const hasLabels = config.layers.find(({ key }) => key === "labels")?.on
 
-  const [fullConfig, setFullConfig] = useState({
-    ...defaultData,
-    ...defaultLabelData,
-    ...defaultPointsData,
-  } as Record<string, any>)
-
-  useEffect(() => {
-    const map = config.toggle.reduce((acc, { title, key, on }) => ({ ...acc, [key]: on }), {})
-    const labels = config.layers.find(({ key }) => key === "labels")
-    const points = config.layers.find(({ key }) => key === "points")
-
-    if (labels && points) {
-      const labelData = labels.on ? defaultLabelData : {}
-      const pointsData = points.on ? defaultPointsData : {}
-
-      console.log({
-        ...defaultData,
-        ...labelData,
-        ...pointsData,
-        ...map,
-      })
-
-      setFullConfig({
-        ...defaultData,
-        ...labelData,
-        ...pointsData,
-        ...map,
-      })
-    }
-  }, [config.toggle, config.layers])
-
-  return <Globe {...fullConfig} />
+  return (
+    <Globe
+      {...defaultData}
+      {...config.toggle.reduce((acc, { title, key, on }) => ({ ...acc, [key]: on }), {})}
+      labelText={hasLabels ? "label" : undefined}
+      labelSize={hasLabels ? 1.7 : undefined}
+      labelsData={hasLabels ? MockData : undefined}
+      pointLabel={hasPoints ? defaultLabelLabels : undefined}
+      pointRadius={hasPoints ? 0.3 : undefined}
+      pointAltitude={hasPoints ? (d: any) => scale(d.magnitude, 0, 10, 0.0, 0.5) : 0}
+      pointsData={hasPoints ? MockData : undefined}
+    />
+  )
 }
