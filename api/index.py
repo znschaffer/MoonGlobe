@@ -7,12 +7,14 @@ event_catelog = []
 def parse_event_catelog():
     file = open("./api/levent.1008weber.csv", "r")
     header = file.read().split(",") #skips the header for the document
+    print(header)
     while(True):
         content = file.read()
         if(not content):
             break
         
         content = content.split(",")
+        print(content)
         
 
 
