@@ -1,8 +1,40 @@
 from flask import Flask
 import csv, json, os, datetime
 from astropy.time import Time
+import datetime
 app = Flask(__name__)
 
+<<<<<<< HEAD
+=======
+
+def jd_to_date(year, jd):
+    if year < 0:
+        year = 0
+    # Create a Time object for the specified JD
+    time = Time(jd, format='jd', scale='utc')
+
+    # Set the year component of the Time object
+    time = time.to_datetime()
+    time = time.replace(year=year)
+
+    # Extract the calendar date in ISO format
+    return time.isoformat()
+
+def get_date_from_days(year, days_elapsed):
+    # Create a datetime object for the given year and the first day (January 1)
+    date = datetime.datetime(year, 1, 1)
+
+    # Add the number of days elapsed to the date
+    date += datetime.timedelta(days=days_elapsed - 1)
+
+    # Extract year, month, and day from the date
+    year = date.year
+    month = date.month
+    day = date.day
+
+    return year, month, day
+
+>>>>>>> main
 entries = os.scandir('./api/datasets')  #data source locations
 
 data_map = {} #storage for all file data
