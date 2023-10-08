@@ -1,4 +1,4 @@
-A,Side,Lat,Lat_err,Long,Long_err,Depth,Depth_err,Assumed
+A,Side,lat,Lat_err,lng,lng_err,Depth,Depth_err,Assumed
 1,N,-15.7,2.4,-36.6,4.6,867,29,N
 3,N,-2.9,1.7,-50.3,6.3,946,22,N
 5,N,1.1,94.2,-44.7,16.4,933,109,Y
