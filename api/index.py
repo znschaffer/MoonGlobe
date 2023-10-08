@@ -1,21 +1,7 @@
 from flask import Flask
-import csv, json, os
+import csv, json, os, datetime
 from astropy.time import Time
 app = Flask(__name__)
-
-
-def jd_to_date(year, jd):
-    if year < 0:
-        year = 0
-    # Create a Time object for the specified JD
-    time = Time(jd, format='jd', scale='utc')
-
-    # Set the year component of the Time object
-    time = time.to_datetime()
-    time = time.replace(year=year)
-
-    # Extract the calendar date in ISO format
-    return time.isoformat()
 
 entries = os.scandir('./api/datasets')  #data source locations
 
@@ -27,6 +13,8 @@ for entry in entries:
         continue
     
     data = []
+    last_valid_year = 0
+    last_valid_jd = 0
     
     with open(entry.path, "r") as file:
         csvReader = csv.DictReader(file)
@@ -37,7 +25,8 @@ for entry in entries:
                 new_key = key.lower()
                 if(new_key == 'long'):  #finds header of long and changes to lng
                     new_key = 'lng'
-                elif(new_key == 'y'):
+                
+                if(new_key == 'y'):
                     new_key = 'year'
                 elif(new_key == 'day'):
                     new_key = 'jd'
@@ -47,10 +36,16 @@ for entry in entries:
                 continue
 
             if('year' in modified_row.keys() and 'jd' in modified_row.keys()):
-                if(not modified_row['year']):
-                    print('aksdjflakdsjf')
-                    continue
-                date = jd_to_date(int(modified_row['year']), int(modified_row['jd']))
+                try:
+                    last_valid_year = int(modified_row['year'])
+                    last_valid_jd = int(modified_row['jd'])
+
+                    temp_date = Time(last_valid_jd, format='jd').to_datetime()
+                    #date = str(last_valid_year)+temp_date.month+temp_date.day
+                    print(temp_date)
+                except:
+                    print('error')
+                    pass
 
             data.append(modified_row)
         
@@ -59,7 +54,5 @@ for entry in entries:
 seismic_data = []
 
 @app.route('/api/seismic ')
-def seismic()
-{
+def seismic():
     return json.dump({'data' : seismic_data}), 200, {'Content-Type':'application/json'}
-}
