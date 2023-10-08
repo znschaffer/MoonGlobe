@@ -27,7 +27,7 @@ export const defaultConfig: Config = {
       key: "points",
       on: true,
     },
-  ],
+  ]
 }
 
 export const defaultData = {

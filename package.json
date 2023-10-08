@@ -19,6 +19,7 @@
     "autoprefixer": "10.4.14",
     "concurrently": "^8.0.1",
     "d3": "^7.8.5",
+    "date-fns": "^2.30.0",
     "datejs": "1.0.0-rc3",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",

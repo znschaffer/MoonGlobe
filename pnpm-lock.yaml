@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@material-tailwind/react':
     specifier: ^2.1.2
@@ -29,6 +25,9 @@ dependencies:
   d3:
     specifier: ^7.8.5
     version: 7.8.5
+  date-fns:
+    specifier: ^2.30.0
+    version: 2.30.0
   datejs:
     specifier: 1.0.0-rc3
     version: 1.0.0-rc3
@@ -3765,3 +3764,7 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
