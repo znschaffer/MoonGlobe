@@ -2,7 +2,11 @@
 const nextConfig = {
   experimental: {
     outputFileTracingExcludes: {
-      "/api/*": ["./public/*"],
+      "/api/_2003_Moonquake_Data": [
+        "./public/*",
+        "./app/**/*",
+        "node_modules/**/*",
+      ],
     },
   },
   rewrites: async () => {
