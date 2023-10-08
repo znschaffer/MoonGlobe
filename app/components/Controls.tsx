@@ -1,14 +1,8 @@
-import {
-  Button,
-  Card,
-  Checkbox,
-  Slider,
-  Typography,
-} from "@material-tailwind/react";
-import { Config } from "../data/defaultConfig";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { parse } from "date-fns";
-import { filter } from "d3";
+import { Button, Card, Checkbox, IconButton, Slider, Typography } from "@material-tailwind/react"
+import { Config } from "../data/defaultConfig"
+import { ChangeEvent, Dispatch, SetStateAction } from "react"
+import { parse } from "date-fns"
+import { filter } from "d3"
 
 export default function Controls({
   filters,
@@ -17,26 +11,23 @@ export default function Controls({
   toggleConfig,
   toggleLayer,
 }: {
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
-  config: Config;
-  toggleConfig: (key: string) => void;
-  toggleLayer: (key: string) => void;
+  filters: Filters
+  setFilters: Dispatch<SetStateAction<Filters>>
+  config: Config
+  toggleConfig: (key: string) => void
+  toggleLayer: (key: string) => void
 }) {
   function advanceYear() {
     setFilters((prev) => {
       return {
-        year: prev.year + 1,
-      };
-    });
+        year: Math.min(prev.year + 1, 1977),
+      }
+    })
   }
 
   return (
     <>
-      <Card
-        className="fixed z-10 p-2 pr-4 text-white left-8 top-8 bg-opacity-80"
-        color="gray"
-      >
+      {/* <Card className="fixed z-10 p-2 pr-4 text-white left-8 top-8 bg-opacity-80" color="gray">
         {config.toggle.map((data) => (
           <Checkbox
             ripple={false}
@@ -55,20 +46,22 @@ export default function Controls({
             color="red"
             checked={data.on}
             onChange={(e) => {
-              e.stopPropagation();
-              toggleLayer(data.key);
+              e.stopPropagation()
+              toggleLayer(data.key)
             }}
           />
         ))}
-      </Card>
-
-      <Card
-        className="fixed z-10 p-4 bg-opacity-80 bottom-8 left-1/2"
-        color="gray"
-      >
-        <Button onClick={advanceYear}>-></Button>
-        <Typography>{filters.year}</Typography>
-      </Card>
+      </Card> */}
+      <div className="fixed z-10 flex justify-center w-full bottom-16">
+        <Card className="p-4 bg-opacity-80" color="gray">
+          <Typography variant="h3" className="m-auto">
+            1969 - {filters.year}
+          </Typography>
+          <IconButton onClick={advanceYear} color="yellow" className="m-auto rounded-full">
+            <i className="fa-solid fa-arrow-right" />
+          </IconButton>
+        </Card>
+      </div>
     </>
-  );
+  )
 }
