@@ -27,11 +27,6 @@ export const defaultConfig: Config = {
       key: "points",
       on: true,
     },
-    {
-      title: "Labels",
-      key: "labels",
-      on: true,
-    },
   ],
 }
 

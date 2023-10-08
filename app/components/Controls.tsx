@@ -1,4 +1,4 @@
-import { Card, Checkbox, Typography } from "@material-tailwind/react"
+import { Card, Checkbox, Slider, Typography } from "@material-tailwind/react"
 import { Config } from "../data/defaultConfig"
 
 export default function Controls({
@@ -12,7 +12,7 @@ export default function Controls({
 }) {
   return (
     <>
-      <Card className="fixed z-10 p-2 left-8 top-8 bg-opacity-80">
+      <Card className="fixed z-10 p-2 pr-4 text-white left-8 top-8 bg-opacity-80" color="gray">
         {config.toggle.map((data) => (
           <Checkbox
             ripple={false}
@@ -38,8 +38,9 @@ export default function Controls({
         ))}
       </Card>
 
-      <Card className="fixed z-10 p-2 bg-white bottom-8 left-1/2 bg-opacity-80">
-        <Typography variant="h2">1993</Typography>
+      <Card className="fixed z-10 p-4 bg-opacity-80 bottom-8 left-1/2" color="gray">
+        <Slider defaultValue={50} color="gray" />
+        <Typography className="m-auto">1970 - 1979</Typography>
       </Card>
     </>
   )
