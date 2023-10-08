@@ -10,8 +10,7 @@ export default function Home() {
   const [config, setConfig] = useState(defaultConfig);
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState<Filters>({
-    yearRange: [],
-    selectedYearIndex: "0",
+    year: 1969,
   });
 
   useEffect(() => {
@@ -21,22 +20,6 @@ export default function Home() {
         const res = await fetch("/api/_2003_Moonquake_Data");
         const data = await res.json();
         setData(data.data);
-        let tempYearRange: string[] = [];
-        data.data.forEach((d: any) => {
-          if (d.Date.length == 10) {
-            let year = parse(d.Date, "yyMMddHHmm", new Date("1970-01-01"))
-              .getFullYear()
-              .toString();
-            console.log(year);
-            if (!tempYearRange.includes(year)) {
-              tempYearRange.push(year);
-            }
-          }
-        });
-        setFilters((prevFilters: Filters) => ({
-          ...prevFilters,
-          yearRange: tempYearRange,
-        }));
       };
       getData();
     }

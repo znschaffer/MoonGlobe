@@ -1,4 +1,10 @@
-import { Card, Checkbox, Slider, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  Checkbox,
+  Slider,
+  Typography,
+} from "@material-tailwind/react";
 import { Config } from "../data/defaultConfig";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { parse } from "date-fns";
@@ -17,12 +23,12 @@ export default function Controls({
   toggleConfig: (key: string) => void;
   toggleLayer: (key: string) => void;
 }) {
-  function handleChange(ev: any) {
-    setFilters((prevState) => ({
-      ...prevState,
-      selectedYearIndex: ev.target.value,
-    }));
-    console.log(filters);
+  function advanceYear() {
+    setFilters((prev) => {
+      return {
+        year: prev.year + 1,
+      };
+    });
   }
 
   return (
@@ -60,17 +66,8 @@ export default function Controls({
         className="fixed z-10 p-4 bg-opacity-80 bottom-8 left-1/2"
         color="gray"
       >
-        <Slider
-          min={0}
-          max={filters.yearRange.length - 1}
-          onChange={(ev) => handleChange(ev)}
-          defaultValue={"1"}
-          step={1}
-          color="gray"
-        />
-        <Typography>
-          {filters.yearRange[Number(filters.selectedYearIndex)]}
-        </Typography>
+        <Button onClick={advanceYear}>-></Button>
+        <Typography>{filters.year}</Typography>
       </Card>
     </>
   );

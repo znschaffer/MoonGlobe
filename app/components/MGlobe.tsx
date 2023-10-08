@@ -3,7 +3,10 @@ import dynamic from "next/dynamic";
 import { Config, defaultData } from "../data/defaultConfig";
 import { parseDate, scale } from "../helpers";
 import { parse } from "date-fns";
-const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+import { useEffect, useRef, useState } from "react";
+import { GlobeMethods } from "react-globe.gl";
+let Globe = () => null;
+if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 export default function MGlobe({
   config,
   data,
@@ -27,16 +30,25 @@ export default function MGlobe({
     }
   }
 
-  let filteredData = data.filter((d: any) => {
-    let year = parse(
-      d.Date,
-      "yyMMddHHmm",
-      new Date("1970/01/01"),
-    ).getFullYear();
-    return (
-      year.toString() == filters.yearRange[Number(filters.selectedYearIndex)]
+  const globeEl = useRef<GlobeMethods>();
+
+  let [ringData, setRingData] = useState<dataPoint[]>(data);
+  let [filteredData, setFilteredData] = useState<dataPoint[]>(data);
+
+  useEffect(() => {
+    setFilteredData((prevState) =>
+      data.filter((d: any) => {
+        let year = parse(
+          d.Date,
+          "yyMMddHHmm",
+          new Date("1970-01-01"),
+        ).getFullYear();
+        return year == filters.year;
+      }),
     );
-  });
+    console.log("filteredData: ", filteredData);
+  }, [filters]);
+
   type dataPoint = {
     Date: string;
     Type: string;
@@ -46,7 +58,6 @@ export default function MGlobe({
     Seconds: number;
   };
 
-  console.log(filteredData);
   let pointLabel = (d: dataPoint) => `
         <strong>${parseDate(d?.Date)}</strong>
         <p>Type: ${getType(d.Type)}</p>
@@ -57,6 +68,12 @@ export default function MGlobe({
 
   let labelText = (d: dataPoint) => `${getType(d.Type)}`;
 
+  useEffect(() => {
+    const g = globeEl.current.controls();
+    g.update();
+    g.autoRotate = true;
+    g.autoRotateSpeed = 0.1;
+  }, []);
   const hasPoints = config.layers.find(({ key }) => key === "points")?.on;
   const hasLabels = config.layers.find(({ key }) => key === "labels")?.on;
   const hasRings = config.layers.find(({ key }) => key === "rings")?.on;
@@ -82,13 +99,14 @@ export default function MGlobe({
         (acc, { title, key, on }) => ({ ...acc, [key]: on }),
         {},
       )}
-      pointLabel={hasPoints ? pointLabel : undefined}
-      labelsData={filteredData ?? []}
+      ref={globeEl}
+      pointLabel={pointLabel}
+      labelsData={filteredData.slice()}
       labelText={labelText}
-      ringsData={filteredData ?? []}
-      pointsData={hasPoints ? filteredData : undefined}
-      pointRadius={hasPoints ? 0.4 : undefined}
-      ringMaxRadius={(d) => (hasRings ? Math.pow(data.Depth, 1 / 8) * 1.2 : 0)}
+      ringsData={hasRings ? filteredData : []}
+      pointsData={hasPoints ? filteredData : []}
+      pointRadius={0.4}
+      ringMaxRadius={(d) => (hasRings ? Math.pow(d.Depth, 1 / 8) * 1.2 : 0)}
       ringColor={(d: dataPoint) => getPointColor(d.Type)}
       ringRepeatPeriod={200}
       ringAltitude={6}

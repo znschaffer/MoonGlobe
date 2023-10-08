@@ -1,4 +1,3 @@
 type Filters = {
-  yearRange: string[];
-  selectedYearIndex: string;
+  year: number;
 };
