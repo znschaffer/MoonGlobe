@@ -12,6 +12,11 @@ export type Config = {
   layers: Layers;
 };
 
+export type Filters = {
+  year: number;
+  heatMap: boolean;
+};
+
 export const defaultConfig: Config = {
   toggle: [
     {
