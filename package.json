@@ -1,6 +1,7 @@
 {
   "name": "next-flask",
   "version": "0.1.0",
+  "strict": false,
   "private": true,
   "scripts": {
     "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328",
@@ -11,19 +12,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.1.4",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
+    "@material-tailwind/react": "^2.1.2",
     "autoprefixer": "10.4.14",
-    "concurrently": "^8.0.1",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
+    "d3": "^7.8.5",
+    "date-fns": "^2.30.0",
     "next": "13.4.3",
-    "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-globe.gl": "^2.25.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.8.3",
+    "@types/three": "^0.156.0",
+    "three": "^0.157.0",
+    "@types/d3": "^7.4.1",
+    "@types/react": "18.2.6",
+    "concurrently": "^8.2.1"
   }
 }

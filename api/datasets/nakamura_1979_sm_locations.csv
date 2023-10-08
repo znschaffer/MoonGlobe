@@ -1,4 +1,4 @@
-Year,Day,H,M,S,Lat,Long,Magnitude,Comments
+Year,Day,H,M,S,lat,lng,Magnitude,Comments
 1971,107,7,0,55,48,35,2.8,
 1971,140,17,25,10,42,-24,2,
 1971,192,13,24,45,43,-47,1.9,Or lat -42 long -60
