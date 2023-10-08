@@ -1,79 +1,75 @@
-"use client";
-import { useState, useEffect } from "react";
-import MGlobe from "./components/MGlobe.tsx";
-import Controls from "./components/Controls.tsx";
-import { defaultConfig } from "./data/defaultConfig";
-import { parse, setYear } from "date-fns";
-import { parseDate } from "./helpers";
-import * as THREE from "three";
+"use client"
+import { useState, useEffect } from "react"
+import MGlobe from "./components/MGlobe.tsx"
+import Controls from "./components/Controls.tsx"
+import { defaultConfig } from "./data/defaultConfig"
+import { parseDate } from "./helpers"
 // @ts-ignore
-import { MTLLoader } from "three/addons/loaders/MTLLoader.js";
+import { MTLLoader } from "three/addons/loaders/MTLLoader.js"
 // @ts-ignore
-import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+import { OBJLoader } from "three/addons/loaders/OBJLoader.js"
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  const [config, setConfig] = useState(defaultConfig);
-  const [data, setData] = useState([]);
+  const [mounted, setMounted] = useState(false)
+  const [config, setConfig] = useState(defaultConfig)
+  const [data, setData] = useState([])
   const [filters, setFilters] = useState<Filters>({
     year: 1969,
     heatMap: false,
-  });
+  })
 
-  const [object, setObject] = useState();
+  const [object, setObject] = useState()
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setMounted(true);
+      setMounted(true)
       let getData = async () => {
-        const res = await fetch("/api/_2003_Moonquake_Data");
-        const data = await res.json();
-        setData(data.data);
-        let tempYearRange: string[] = [];
+        const res = await fetch("/api/_2003_Moonquake_Data")
+        const data = await res.json()
+        setData(data.data)
+        let tempYearRange: string[] = []
         data.data.forEach((d: any) => {
           if (d.Date.length == 10) {
-            let year = new Date(parseDate(d.Date)).getFullYear().toString();
+            let year = new Date(parseDate(d.Date)).getFullYear().toString()
             if (!tempYearRange.includes(year)) {
-              tempYearRange.push(year);
+              tempYearRange.push(year)
             }
           }
-        });
+        })
         setFilters((prevFilters: Filters) => ({
           ...prevFilters,
           yearRange: tempYearRange,
-        }));
-      };
-      getData();
+        }))
+      }
+      getData()
     }
 
     new MTLLoader().load("module.mtl", function (materials) {
-      materials.preload();
+      materials.preload()
 
-      new OBJLoader()
-        .setMaterials(materials)
-        .load("module.obj", function (obj) {
-          obj.scale.set(0.04, 0.04, 0.04);
-          setObject(obj);
-        });
-    });
-  }, []);
+      new OBJLoader().setMaterials(materials).load("module.obj", function (obj) {
+        obj.scale.set(0.04, 0.04, 0.04)
+        setObject(obj)
+      })
+    })
+  }, [])
 
   function toggleConfig(key: string) {
     setConfig({
       ...config,
       toggle: config.toggle.map((option) =>
-        option.key === key ? { ...option, on: !option.on } : option,
+        option.key === key ? { ...option, on: !option.on } : option
       ),
-    });
+    })
   }
 
   function toggleLayer(key: string) {
     setConfig({
       ...config,
       layers: config.layers.map((option) =>
-        option.key === key ? { ...option, on: !option.on } : option,
+        option.key === key ? { ...option, on: !option.on } : option
       ),
-    });
+    })
   }
 
   return mounted ? (
@@ -89,5 +85,5 @@ export default function Home() {
     </div>
   ) : (
     <div />
-  );
+  )
 }
