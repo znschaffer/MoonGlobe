@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link rel="icon" type="image/png" href="/moon_favicon.png" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
