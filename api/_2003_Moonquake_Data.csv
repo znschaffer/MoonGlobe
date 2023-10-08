@@ -1,4 +1,4 @@
-Type,Lat,Long,Depth,Phi,Delta-a,Delta-b,Depth_err,Date,Seconds,Time_err,12P,12P_EC,14P,14P_EC,15P,15P_EC,16P,16P_EC,12S,12S_EC,14S,14S_EC,15S,15S_EC,16S,16S_EC
+Type,lat,lng,Depth,Phi,Delta-a,Delta-b,Depth_err,Date,Seconds,Time_err,12P,12P_EC,14P,14P_EC,15P,15P_EC,16P,16P_EC,12S,12S_EC,14S,14S_EC,15S,15S_EC,16S,16S_EC
 12 LM,-3.94,-21.2,0,0,0,0,0,6911202217,17.7,0,42.4,2,,,,,,,56.29,2,,,,,,
 13 S-IVB,-2.75,-27.86,0,0,0,0,0,7004150209,41,0,68.8,0,,,,,,,89.04,2,,,,,,
 14 S-IVB,-8.09,-26.02,0,0,0,0,0,7102040740,55.4,0,90.8,0,,,,,,,,,,,,,,

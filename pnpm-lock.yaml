@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@material-tailwind/react':
     specifier: ^2.1.2
@@ -25,6 +29,9 @@ dependencies:
   d3:
     specifier: ^7.8.5
     version: 7.8.5
+  datejs:
+    specifier: 1.0.0-rc3
+    version: 1.0.0-rc3
   eslint:
     specifier: 8.40.0
     version: 8.40.0
@@ -77,6 +84,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -1331,6 +1339,11 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.21.5
+    dev: false
+
+  /datejs@1.0.0-rc3:
+    resolution: {integrity: sha512-c6kzWmGUKLrdT+8LjUvtAObOgsecqnkpOYOuSDzYdNhdCk3+WALxtBuSMRJDmOfS6JVs/+N2yTGHb0D8oNqB/Q==}
+    engines: {node: '>=0.8'}
     dev: false
 
   /debug@3.2.7:
@@ -3752,7 +3765,3 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

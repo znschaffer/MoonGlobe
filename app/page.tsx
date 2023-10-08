@@ -7,7 +7,7 @@ import { defaultConfig } from "./data/defaultConfig";
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [config, setConfig] = useState(defaultConfig);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
