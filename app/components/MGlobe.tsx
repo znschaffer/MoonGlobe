@@ -45,6 +45,40 @@ export default function MGlobe({ config, data }: { config: Config; data: any }) 
         return "white"
     }
   }
+"use client";
+import Globe from "react-globe.gl";
+import MockData from "../data/mock";
+import { useEffect, useState } from "react";
+import { Config, defaultData } from "../data/defaultConfig";
+import { scale } from "../helpers";
+import { parse } from "date-fns";
+
+export default function MGlobe({
+  config,
+  filters,
+  data,
+}: {
+  config: Config;
+  filters: Filters;
+  data: any;
+}) {
+  let defaultLabelLabels = (d: any) => `
+        <div><b>${d.Type}</b></div>`;
+
+  const hasPoints = config.layers.find(({ key }) => key === "points")?.on;
+  const hasLabels = config.layers.find(({ key }) => key === "labels")?.on;
+
+  let filteredData = data.filter((d: any) => {
+    let year = parse(
+      d.Date,
+      "yyMMddHHmm",
+      new Date("1970/01/01"),
+    ).getFullYear();
+    return (
+      year.toString() == filters.yearRange[Number(filters.selectedYearIndex)]
+    );
+  });
+  console.log(filteredData);
 
   return (
     <Globe
@@ -63,5 +97,5 @@ export default function MGlobe({ config, data }: { config: Config; data: any }) 
       pointAltitude={hasPoints ? (d: any) => scale(d.Seconds, 0, 200, 0.0, 0.5) : 0}
       pointColor={(d) => getPointColor(d.Type)}
     />
-  )
+  );
 }

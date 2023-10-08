@@ -1,17 +1,16 @@
 export type ConfigOption = {
-  title: string
-  key: string
-  on: boolean
-}
+  title: string;
+  key: string;
+  on: boolean;
+};
 
-export type Toggle = ConfigOption[]
-export type Layers = ConfigOption[]
+export type Toggle = ConfigOption[];
+export type Layers = ConfigOption[];
 
 export type Config = {
-  toggle: Toggle
-  layers: Layers
-}
-
+  toggle: Toggle;
+  layers: Layers;
+};
 
 export const defaultConfig: Config = {
   toggle: [
@@ -44,4 +43,5 @@ export const defaultData = {
   bumpImageUrl: "./ldem_16.png",
   globeImageUrl: "./lroc_color_poles_8k.png",
   showAtmosphere: false,
-}
+};
+
