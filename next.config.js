@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     outputFileTracingExcludes: {
-      "/api/*": ["public/**/*", "app/**/*", "node_modules/**/*"],
+      "/api/*": ["./.git/**/*", "public/**/*", "app/**/*", "node_modules/**/*"],
     },
   },
   rewrites: async () => {
