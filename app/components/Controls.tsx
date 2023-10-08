@@ -68,7 +68,7 @@ export default function Controls({
           step={1}
           color="gray"
         />
-        <Typography className="m-auto">
+        <Typography>
           {filters.yearRange[Number(filters.selectedYearIndex)]}
         </Typography>
       </Card>

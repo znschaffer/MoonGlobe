@@ -23,12 +23,14 @@ export default function Home() {
         setData(data.data);
         let tempYearRange: string[] = [];
         data.data.forEach((d: any) => {
-          let year = parse(d.Date, "yyMMddHHmm", new Date("1970-01-01"))
-            .getFullYear()
-            .toString();
-          console.log(year);
-          if (!tempYearRange.includes(year)) {
-            tempYearRange.push(year);
+          if (d.Date.length == 10) {
+            let year = parse(d.Date, "yyMMddHHmm", new Date("1970-01-01"))
+              .getFullYear()
+              .toString();
+            console.log(year);
+            if (!tempYearRange.includes(year)) {
+              tempYearRange.push(year);
+            }
           }
         });
         setFilters((prevFilters: Filters) => ({
