@@ -6,7 +6,9 @@ import { parse } from "date-fns"
 import { useEffect, useRef, useState } from "react"
 import { GlobeMethods } from "react-globe.gl"
 import { stations } from "../data/stations"
-const Globe = dynamic(import("react-globe.gl"), { ssr: false })
+import ts from "typescript"
+let Globe = () => null
+if (typeof window !== "undefined") Globe = require("react-globe.gl").default
 export default function MGlobe({
   config,
   data,
@@ -32,7 +34,6 @@ export default function MGlobe({
     }
   }
 
-  let [ringData, setRingData] = useState<dataPoint[]>(data)
   let [filteredData, setFilteredData] = useState<dataPoint[]>(data)
 
   useEffect(() => {
@@ -83,9 +84,10 @@ export default function MGlobe({
     <Globe
       {...defaultData}
       {...config.toggle.reduce((acc, { title, key, on }) => ({ ...acc, [key]: on }), {})}
+      // @ts-ignore
       pointLabel={pointLabel}
       labelsData={filteredData.slice()}
-      labelText={(d: dataPoint) => getType(d.Type)}
+      labelText={(d) => getType(d.Type)}
       ringsData={hasRings ? filteredData : []}
       pointsData={hasPoints ? filteredData : []}
       pointRadius={0.4}
@@ -97,7 +99,7 @@ export default function MGlobe({
       objectsData={stations}
       objectThreeObject={object}
       objectAltitude={0}
-      pointAltitude={hasPoints ? (d: dataPoint) => scale(d.Depth / 10, 0, 200, 0.0, 0.5) : 0}
+      pointAltitude={hasPoints ? (d: any) => scale(d.Depth / 10, 0, 200, 0.0, 0.5) : 0}
       pointColor={(d: dataPoint) => getPointColor(d.Type)}
     />
   )
