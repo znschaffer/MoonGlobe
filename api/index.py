@@ -56,5 +56,10 @@ for entry in entries:
         
     data_map[entry.name.lower()[:-4]] = data
 
-#@app.route('/api/sismic')
-print(data_map)
+seismic_data = []
+
+@app.route('/api/seismic ')
+def seismic()
+{
+    return json.dump({'data' : seismic_data}), 200, {'Content-Type':'application/json'}
+}
