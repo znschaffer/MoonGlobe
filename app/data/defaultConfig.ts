@@ -36,14 +36,13 @@ export const defaultConfig: Config = {
     //   key: "labels",
     //   on: true,
     // },
-  ]
-}
+  ],
+};
 
 export const defaultData = {
   bumpImageUrl: "./ldem_16.png",
-  globeImageUrl: "./lroc_color_poles_8k.png",
+  globeImageUrl: "./lroc_color_poles_2k.png",
   backgroundImageUrl: "./starry_night.jpg",
   showAtmosphere: false,
-  animateIn: true
+  animateIn: true,
 };
-
