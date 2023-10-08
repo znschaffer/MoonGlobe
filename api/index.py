@@ -55,4 +55,5 @@ seismic_data = []
 
 @app.route('/api/seismic ')
 def seismic():
+def seismic():
     return json.dump({'data' : seismic_data}), 200, {'Content-Type':'application/json'}
