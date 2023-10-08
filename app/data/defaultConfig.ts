@@ -27,6 +27,16 @@ export const defaultConfig: Config = {
       key: "points",
       on: true,
     },
+    {
+      title: "Rings",
+      key: "rings",
+      on: true,
+    },
+    // {
+    //   title: "Labels",
+    //   key: "labels",
+    //   on: true,
+    // },
   ]
 }
 
