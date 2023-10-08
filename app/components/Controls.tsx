@@ -1,5 +1,5 @@
 import { Card, IconButton, Switch, Typography } from "@material-tailwind/react"
-import { Config } from "../data/defaultConfig"
+import { Config, Filters } from "../data/defaultConfig"
 import { Dispatch, SetStateAction } from "react"
 
 export default function Controls({

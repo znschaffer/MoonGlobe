@@ -1,5 +1,5 @@
 "use client"
-import { Config } from "../data/defaultConfig"
+import { Config, Filters } from "../data/defaultConfig"
 import { parseDate, scale } from "../helpers"
 import { parse } from "date-fns"
 import { useEffect, useState } from "react"
