@@ -13,6 +13,10 @@
 
 This project was created in 1.5 days for the NASA Space Apps Hackathon 2023, Seattle division. We were proud to win the regional `Best Technology` award for this project. Check out the deployed version [here](https://moon-globe.vercel.app/). 
 
+<p align="center">
+<img src="./public/screenshot.png" height="100%"/>
+</p>
+
 ## How It Works
 
 This project is built on a Python/Flask API under a Next.JS frontend. The Flask server is hosted as a Python serverless function on Vercel. We used [Globe.GL](https://globe.gl/) for the 3D visualization. 
